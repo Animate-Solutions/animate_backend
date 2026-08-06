@@ -14,16 +14,19 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
     public function run(): void
-    {
-        // User::factory(10)->create();
-
-        User::factory()->create([
+{
+    // Create the default admin user only if it doesn't already exist
+    User::updateOrCreate(
+        ['email' => 'test@example.com'],
+        [
             'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+            'password' => bcrypt('password'),
+        ]
+    );
 
-        $this->call([
-            TextImageSectionSeeder::class,
-        ]);
-    }
+    $this->call([
+        TextImageSectionSeeder::class,
+        EventSeeder::class,
+    ]);
+}
 }

@@ -33,7 +33,11 @@ class TextImageSectionSeeder extends Seeder
             ],
         ];
 
-        // Insert into database (adjust table name if different)
-        DB::table('text_image_sections')->insert($sections);
+        foreach ($sections as $section) {
+            DB::table('text_image_sections')->updateOrInsert(
+                ['slug' => $section['slug']],
+                $section
+            );
+        }
     }
 }
