@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
     $this->call([
         TextImageSectionSeeder::class,
         EventSeeder::class,
+        ProductSeeder::class,
     ]);
 }
 }
